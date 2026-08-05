@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private CommandInvoker commandInvoker;
+
     [SerializeField] private UIController interfaceManager;
     private Board gameBoard;
 
@@ -46,11 +48,19 @@ public class GameManager : MonoBehaviour
         currentPlayer = playerX;
     }
 
+    public void Undo()
+    {
+        commandInvoker.UndoLastCommand();
+    }
+
     public void ClickCell(TextMeshProUGUI cell, int row, int col)
     {
         CellState state = currentPlayer == playerX ? CellState.X : CellState.O;
 
-        gameBoard.SetCell(row, col, state);
+        //gameBoard.SetCell(row, col, state);
+
+        PlaceCellCommand command = new PlaceCellCommand(gameBoard, row, col, state);
+        commandInvoker.ExecuteCommand(command);
 
         interfaceManager.SetCell(cell, currentPlayer);
 

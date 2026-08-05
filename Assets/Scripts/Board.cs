@@ -45,6 +45,11 @@ public class Board
         Debug.Log(output);
     }
 
+    public CellState GetCell(int row, int col)
+    {
+        return gameBoard[row, col];
+    }
+
     public void SetCell(int row, int col, CellState state)
     {
         gameBoard[row, col] = state;
