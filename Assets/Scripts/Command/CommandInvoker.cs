@@ -27,7 +27,7 @@ public class CommandInvoker : MonoBehaviour
 
     public void RedoLastCommand()
     {
-        if (undoHistory.Count == 0) return;
+        if (redoHistory.Count == 0) return;
 
         ICommand command = redoHistory.Pop();
 
