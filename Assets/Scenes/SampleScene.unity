@@ -1747,15 +1747,15 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1077903638}
-  - {fileID: 1376893650}
   - {fileID: 647696522}
-  - {fileID: 1635079930}
-  - {fileID: 95623974}
+  - {fileID: 1376893650}
+  - {fileID: 1077903638}
   - {fileID: 254959900}
-  - {fileID: 724414374}
-  - {fileID: 799584648}
+  - {fileID: 95623974}
+  - {fileID: 1635079930}
   - {fileID: 529716891}
+  - {fileID: 799584648}
+  - {fileID: 724414374}
   m_Father: {fileID: 75585668}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -5255,15 +5255,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIController
   cells:
-  - {fileID: 1406931267}
-  - {fileID: 31605319}
   - {fileID: 1239636082}
-  - {fileID: 1977835141}
-  - {fileID: 270570564}
+  - {fileID: 31605319}
+  - {fileID: 1406931267}
   - {fileID: 1532611562}
-  - {fileID: 693087752}
-  - {fileID: 986125552}
+  - {fileID: 270570564}
+  - {fileID: 1977835141}
   - {fileID: 2046660843}
+  - {fileID: 986125552}
+  - {fileID: 693087752}
   strikes:
   - type: 0
     image: {fileID: 2112230094}
@@ -5285,7 +5285,7 @@ MonoBehaviour:
   winMessage: {fileID: 645736509}
   xWinTally: {fileID: 1931387412}
   oWinTally: {fileID: 703709466}
-  winMessageSuffix: Wins!
+  winMessageSuffix: ' Wins!'
 --- !u!1 &1806613112
 GameObject:
   m_ObjectHideFlags: 0

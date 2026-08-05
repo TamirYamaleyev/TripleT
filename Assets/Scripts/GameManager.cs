@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -77,7 +78,8 @@ public class GameManager : MonoBehaviour
         PlaceCellCommand command = new PlaceCellCommand(gameBoard, row, col, state);
         commandInvoker.ExecuteCommand(command);
 
-        interfaceManager.SetCell(cell, currentPlayer);
+        interfaceManager.RefreshBoard(gameBoard);
+        //interfaceManager.SetCell(cell, currentPlayer);
 
         StrikeType? strike = gameBoard.CheckWin(state);
 

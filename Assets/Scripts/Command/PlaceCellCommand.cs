@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlaceCellCommand : ICommand
@@ -20,7 +21,6 @@ public class PlaceCellCommand : ICommand
 
     public void Execute()
     {
-        oldState = board.GetCell(row, col);
         board.SetCell(row, col, newState);
     }
 
