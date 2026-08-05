@@ -13,7 +13,9 @@ public class PlaceCellCommand : ICommand
         this.board = board;
         this.row = row;
         this.col = col;
-        this.newState = state;
+        newState = state;
+
+        oldState = board.GetCell(row, col);
     }
 
     public void Execute()

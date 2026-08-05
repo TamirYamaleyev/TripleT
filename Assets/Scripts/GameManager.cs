@@ -44,13 +44,28 @@ public class GameManager : MonoBehaviour
     public void ResetGame()
     {
         gameBoard.ResetBoard();
+        commandInvoker.ClearHistory();
+
         interfaceManager.Reset();
         currentPlayer = playerX;
     }
 
-    public void Undo()
+    public void UndoMove()
     {
         commandInvoker.UndoLastCommand();
+
+        currentPlayer = currentPlayer == playerX ? playerO : playerX;
+
+        interfaceManager.RefreshBoard(gameBoard);
+    }
+
+    public void RedoMove()
+    {
+        commandInvoker.RedoLastCommand();
+
+        currentPlayer = currentPlayer == playerX ? playerO : playerX;
+
+        interfaceManager.RefreshBoard(gameBoard);
     }
 
     public void ClickCell(TextMeshProUGUI cell, int row, int col)

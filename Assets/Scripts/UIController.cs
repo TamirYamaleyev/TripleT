@@ -44,6 +44,32 @@ public class UIController : MonoBehaviour
         }
     }
 
+    public void RefreshBoard(Board board)
+    {
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 3; col++)
+            {
+                int index = row * 3 + col;
+
+                switch(board.GetCell(row, col))
+                {
+                    case CellState.X:
+                        cells[index].text = "X";
+                        break;
+
+                    case CellState.O:
+                        cells[index].text = "O";
+                        break;
+
+                    default:
+                        cells[index].text = "";
+                        break;
+                }
+            }
+        }
+    }
+
     public void SetCell(TextMeshProUGUI cell, string text)
     {
         cell.text = text;
