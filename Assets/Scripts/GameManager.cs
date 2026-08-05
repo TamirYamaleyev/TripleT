@@ -4,12 +4,16 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private UIController interfaceManager;
+    private Board gameBoard;
 
     [SerializeField] private string playerX = "X";
     [SerializeField] private string playerO = "O";
 
     private string currentPlayer;
     public string CurrentPlayer => currentPlayer;
+
+    private int xWinCount = 0;
+    private int oWinCount = 0;
 
     public static GameManager Instance { get; private set; }
 
@@ -24,10 +28,65 @@ public class GameManager : MonoBehaviour
         Instance = this;
 
         currentPlayer = playerX;
+        gameBoard = new Board();
     }
 
-    public void ClickCell(TextMeshProUGUI cell)
+    public void ResetWins()
     {
+        xWinCount = 0;
+        oWinCount = 0;
+        interfaceManager.UpdateOWins(xWinCount);
+        interfaceManager.UpdateXWins(oWinCount);
+    }
+
+    public void ResetGame()
+    {
+        gameBoard.ResetBoard();
+        interfaceManager.Reset();
+        currentPlayer = playerX;
+    }
+
+    public void ClickCell(TextMeshProUGUI cell, int row, int col)
+    {
+        CellState state = currentPlayer == playerX ? CellState.X : CellState.O;
+
+        gameBoard.SetCell(row, col, state);
+
         interfaceManager.SetCell(cell, currentPlayer);
+
+        StrikeType? strike = gameBoard.CheckWin(state);
+
+        if (strike.HasValue)
+        {
+            interfaceManager.SetStrike(strike.Value);
+            SetWinner(currentPlayer);
+        }
+
+        EndTurn();
+    }
+
+    private void EndTurn()
+    {
+        if (currentPlayer == playerX)
+            currentPlayer = playerO;
+        else
+            currentPlayer = playerX;
+    }
+
+    private void SetWinner(string winner)
+    {
+        if (winner == playerX)
+        {
+            xWinCount++;
+            interfaceManager.UpdateXWins(xWinCount);
+        }
+
+        else
+        {
+            oWinCount++;
+            interfaceManager.UpdateOWins(oWinCount);
+        }
+
+        interfaceManager.ShowWinMessage(winner);
     }
 }

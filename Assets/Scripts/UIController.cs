@@ -10,6 +10,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI[] cells;
     [SerializeField] private List<Strike> strikes = new();
 
+    [SerializeField] private GameObject winPanel;
+    [SerializeField] private TextMeshProUGUI winMessage;
+    [SerializeField] private TextMeshProUGUI xWinTally;
+    [SerializeField] private TextMeshProUGUI oWinTally;
+
+    [SerializeField] private string winMessageSuffix;
+
     void Start()
     {
         Reset();
@@ -52,5 +59,21 @@ public class UIController : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public void UpdateXWins(int count)
+    {
+        xWinTally.text = count.ToString();
+    }
+
+    public void UpdateOWins(int count)
+    {
+        oWinTally.text = count.ToString();
+    }
+
+    public void ShowWinMessage(string winner)
+    {
+        winMessage.text = winner + winMessageSuffix;
+        winPanel.SetActive(true);
     }
 }
