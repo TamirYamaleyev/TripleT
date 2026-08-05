@@ -8,10 +8,7 @@ using UnityEngine.UI;
 public class UIController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI[] cells;
-    [SerializeField] private string xText = "X";
-    [SerializeField] private string oText = "O";
-
-    [SerializeField] private Dictionary<Image, string> strikeDict;
+    [SerializeField] private List<Strike> strikes = new();
 
     void Start()
     {
@@ -34,25 +31,26 @@ public class UIController : MonoBehaviour
 
     private void ResetStrikes()
     {
-        foreach (KeyValuePair<Image, string> strike in strikeDict)
+        foreach (Strike strike in strikes)
         {
-            strike.Key.gameObject.SetActive(false);
+            strike.image.gameObject.SetActive(false);
         }
     }
 
-    public void SetCellX(TextMeshProUGUI cell)
+    public void SetCell(TextMeshProUGUI cell, string text)
     {
-        cell.text = xText;
+        cell.text = text;
     }
 
-    public void SetCellO(TextMeshProUGUI cell)
+    public void SetStrike(StrikeType strikeType)
     {
-        cell.text = oText;
-    }
-
-    public void SetStrike(string strikeValue)
-    {
-        GameObject strikeToEnable = strikeDict.FirstOrDefault(x => x.Value == strikeValue).Key.gameObject;
-        strikeToEnable.SetActive(true);
+        foreach (var strike in strikes)
+        {
+            if (strike.type == strikeType)
+            {
+                strike.image.gameObject.SetActive(true);
+                return;
+            }
+        }
     }
 }
